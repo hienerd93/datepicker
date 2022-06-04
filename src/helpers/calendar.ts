@@ -5,6 +5,8 @@ import {
   lastDayOfMonth,
   format,
   isSameDay,
+  isSameMonth,
+  addMonths,
 } from "date-fns";
 import { chunk } from "lodash";
 
@@ -32,6 +34,20 @@ export const getISODay = (date: Date) => {
 
 export const checkSameDay = (date: Date, compareDate: Date) => {
   return isSameDay(date, compareDate);
+}
+
+export const checkSameMonth = (date: Date, compareDate: Date) => {
+  return isSameMonth(date, compareDate);
+}
+
+export const nextMonth = (month = THIS_MONTH, year = THIS_YEAR) => {
+  const _nextMonth = addMonths(new Date(year, month - 1), 1);
+  return { year: _nextMonth.getFullYear(), month: _nextMonth.getMonth() + 1};
+}
+
+export const prevMonth = (month = THIS_MONTH, year = THIS_YEAR) => {
+  const _prevMonth = addMonths(new Date(year, month - 1), -1);
+  return { year: _prevMonth.getFullYear(), month: _prevMonth.getMonth() + 1};
 }
 
 export enum WEEK_DAYS {
